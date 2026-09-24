@@ -9,7 +9,8 @@
   document.title = site.title;
   document.getElementById("brand").textContent = site.title;
   document.getElementById("footer").textContent = `${site.title}, ${site.term}. ${site.student}`;
-  nav.innerHTML = site.units.map((u, i) => `<a href="#/unit/${u.id}">${i + 1}. ${esc(u.title)}</a>`).join("");
+  const recent = site.units.flatMap(u => u.pdfs.map((p, k) => ({ u, p, k }))).slice(-3).reverse();
+  nav.innerHTML = site.units.map((u, i) => `<a href="#/unit/${u.id}">${esc(u.title)}</a>`).join("");
 
   function heroPlot() {
     const L = 150, eps = 24, pts = [];
@@ -49,7 +50,6 @@
         <a class="pin" href="#/unit/${u.id}" style="--tint:${tint(u)}">
           ${u.cover ? `<img src="${esc(u.cover)}" alt="" loading="lazy">` : ""}
           <div class="body">
-            <div class="num">Unit ${i + 1}</div>
             <h3>${esc(u.title)}</h3>
             <p>${esc(u.summary)}</p>
             <ul class="tags">${(u.topics || []).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
@@ -66,18 +66,26 @@
           <p class="about">${esc(site.about)}</p>
           <ul class="meta">
             <li>${esc(site.student)}</li>
-            <li>with ${esc(site.professor)}</li>
+            ${site.professor ? `<li>with ${esc(site.professor)}</li>` : ""}
             <li>${esc(site.term)}</li>
           </ul>
         </div>
         ${heroPlot()}
       </section>
-      <div class="board-head"><h2>Units</h2><span>${site.units.length} units</span></div>
+      ${recent.length ? `
+      <div class="board-head"><h2>Latest work</h2></div>
+      <div class="recent">${recent.map(({ u, p, k }) => `
+        <a class="recent-card" href="#/unit/${u.id}/${k}" style="--tint:${tint(u)}">
+          <span class="date">${esc(p.date || "")}</span>
+          <strong>${esc(p.title)}</strong>
+          <small>${esc(u.title)}</small>
+        </a>`).join("")}</div>` : ""}
+      <div class="board-head"><h2>Units</h2><span>${site.units.length} unit${site.units.length === 1 ? "" : "s"}</span></div>
       <div class="board">${pins}</div>`;
     setActive(null);
   }
 
-  function unitPage(id) {
+  function unitPage(id, startDoc = 0) {
     const i = site.units.findIndex(u => u.id === id);
     if (i < 0) return home();
     const u = site.units[i];
@@ -87,12 +95,12 @@
       <div class="docs">
         <ul class="doc-list" role="tablist" aria-label="Documents">
           ${u.pdfs.map((p, k) => `
-            <li><button role="tab" data-k="${k}" aria-selected="${k === 0}">
-              ${esc(p.title)}${p.note ? `<small>${esc(p.note)}</small>` : ""}
+            <li><button role="tab" data-k="${k}" aria-selected="${k === startDoc}">
+              ${esc(p.title)}${p.date ? `<small>${esc(p.date)}</small>` : ""}
             </button></li>`).join("")}
         </ul>
         <div class="viewer" id="viewer"></div>
-      </div>` : `<div class="empty">No PDFs yet. Put files in <code>assets/</code> and list them under <code>pdfs</code> for this unit in <code>content.js</code>.</div>`;
+      </div>` : `<div class="empty">Proofs for this unit will appear here.</div>`;
 
     let photoIndex = 0;
     const notes = u.notes.length ? `<div class="wall">${u.notes.map(n => {
@@ -111,11 +119,10 @@
       }
       return `<div class="note text-note" style="--tint:${tint(u)}"><div class="text">
         ${date}${n.title ? `<h4>${esc(n.title)}</h4>` : ""}<p>${esc(n.body)}</p></div></div>`;
-    }).join("")}</div>` : `<div class="empty">No notes yet. Add whiteboard photos or typed notes under <code>notes</code> for this unit in <code>content.js</code>.</div>`;
+    }).join("")}</div>` : `<div class="empty">Scratch notes and whiteboard photos for this unit will appear here.</div>`;
 
     main.innerHTML = `
       <section class="unit-hero" style="--tint:${tint(u)}">
-        <div class="big-num" aria-hidden="true">${i + 1}</div>
         <h1>${esc(u.title)}</h1>
         <p>${esc(u.summary)}</p>
         <ul class="tags">${(u.topics || []).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
@@ -137,12 +144,16 @@
         document.getElementById("viewer").innerHTML = `
           <div class="viewer-bar"><strong>${esc(p.title)}</strong>
             <a href="${esc(p.file)}" target="_blank" rel="noopener">Open in new tab</a></div>
+          ${p.description || p.reflection ? `<div class="doc-context">
+            ${p.description ? `<p>${esc(p.description)}</p>` : ""}
+            ${p.reflection ? `<h3>Reflection</h3><p>${esc(p.reflection)}</p>` : ""}
+          </div>` : ""}
           ${canEmbedPdf
             ? `<iframe src="${esc(p.file)}#view=FitH" title="${esc(p.title)}"></iframe>`
             : `<div class="empty" style="margin:1rem">This browser can't show PDFs inline. Use "Open in new tab" above.</div>`}`;
       };
       tabs.forEach(t => t.addEventListener("click", () => show(+t.dataset.k)));
-      show(0);
+      show(Math.min(startDoc, u.pdfs.length - 1));
     }
 
     const photos = u.notes.filter(n => n.type === "photo");
@@ -181,8 +192,8 @@
   lb.addEventListener("keydown", e => { if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
 
   function route() {
-    const m = location.hash.match(/^#\/unit\/(.+)$/);
-    m ? unitPage(decodeURIComponent(m[1])) : home();
+    const m = location.hash.match(/^#\/unit\/([^/]+)(?:\/(\d+))?$/);
+    m ? unitPage(decodeURIComponent(m[1]), +(m[2] || 0)) : home();
     window.scrollTo(0, 0);
     if (m) main.focus({ preventScroll: true });
   }
