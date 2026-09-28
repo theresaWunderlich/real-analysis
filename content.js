@@ -12,7 +12,7 @@ window.SITE = {
   title: "MTH 490 Real Analysis",
   subtitle: "Directed study portfolio",
   student: "Theresa Wunderlich",
-  professor: "", // e.g. "Dr. Lastname" — leave empty to hide
+  professor: "Dr. Hallstrom", 
   term: "Fall 2026",
   about:
     "A record of proving basic theorems from formal definitions: the finished proofs, the scratch work behind them, and reflections on learning to communicate mathematical ideas clearly.",
@@ -24,7 +24,7 @@ window.SITE = {
       tint: "lilac",
       cover: "assets/unit-1/whiteboards/2026-09-17-abs-nonnegative.jpg",
       summary: "Building order on R from the positive numbers, then using it to prove the basic facts about inequalities and absolute value.",
-      topics: ["Axiom 1.4 (Order)", "Definition 1.5", "Absolute value", "Triangle inequality"],
+      topics: ["Real number system","Axiom 1.4 (Order)", "Order relations", "Absolute value", "Equivalence"],
       pdfs: [
         {
           title: "Order axioms and the real number system",
