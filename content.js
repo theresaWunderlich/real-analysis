@@ -12,10 +12,10 @@ window.SITE = {
   title: "MTH 490 Real Analysis",
   subtitle: "Directed study portfolio",
   student: "Theresa Wunderlich",
-  professor: "Dr. Hallstrom", 
+  professor: "", // e.g. "Dr. Lastname" — leave empty to hide
   term: "Fall 2026",
   about:
-    "A record of proving basic theorems from formal definitions: the finished proofs, the scratch work behind them, and reflections on learning to communicate mathematical ideas clearly.",
+    "This portfolio is a comprehensive record of coursework and academic progression to prove how basic theorems follow from formal definitions. All together, it shows the final proved equations and the iterative process of working with complex definitions and learning to communicate mathematical ideas clearly.",
 
   units: [
     {
@@ -24,42 +24,45 @@ window.SITE = {
       tint: "lilac",
       cover: "assets/unit-1/whiteboards/2026-09-17-abs-nonnegative.jpg",
       summary: "Building order on R from the positive numbers, then using it to prove the basic facts about inequalities and absolute value.",
-      topics: ["Real number system","Axiom 1.4 (Order)", "Order relations", "Absolute value", "Equivalence"],
+      topics: ["Axiom 1.4 (Order)", "Definition 1.5", "Absolute value", "Triangle inequality"],
       pdfs: [
         {
           title: "Order axioms and the real number system",
           file: "assets/unit-1/order-axioms.pdf",
           date: "Sep 6",
           description:
-            "Proofs from Axiom 1.4: if a is positive then −a is negative and conversely, 1 is positive, and a negative number exists.",
+            "Formal proofs exploring the concept of order within the real numbers by applying Axiom 1.4. Verifying fundamental arithmetic facts using axioms, proving the relationship between positive and negative numbers, establishing that 1 is positive, and confirming the existence of a negative number.",
           reflection:
-            "Working through these proofs required me to step back from intuitive assumptions that feel natural after years of courses focused on solving equations. Structuring the arguments gave me practice communicating technical ideas clearly in a formal mathematical style, and was a good refresher on LaTeX and formal proofs."
+            "Working through these proofs required me to step back from intuitive mathematical assumptions that feel natural from years of math courses focused on solving equations. Structuring these arguments and constructing proofs allowed me to practice communicating technical concepts with clarity and in a professional mathematical format (a good refresher for LaTeX and formal proofs)."
         },
         {
           title: "Order relations on the real numbers",
           file: "assets/unit-1/order-relations.pdf",
           date: "Sep 8",
           description:
-            "Using Definition 1.5 to show that ≤ is reflexive, antisymmetric, and transitive, working only from the properties of the positive numbers and zero.",
+            "This artifact contains formal proofs establishing the fundamental properties of order relations within the real number system based on Definition 1.5. Demonstrates how to verify that the \"less than or equal to\" relation is reflexive, antisymmetric, and transitive by defined properties of positive numbers and zero.",
           reflection:
-            "These problems meant handling every condition: splitting arguments into distinct cases and using contradiction to rule out the ones that can't happen. Breaking a problem into all possible cases closely mirrors the branching and edge-case analysis I use in computer science."
+            "These problems highlighted addressing different conditions, such as splitting arguments into distinct cases and utilizing contradiction to rule out invalid scenarios. Breaking a problem down into all possible cases closely mirrors the algorithmic branching and edge-case analysis utilized in computer science."
         },
         {
           title: "Equivalence and absolute value",
           file: "assets/unit-1/equivalence-absolute-value.pdf",
           date: "Sep 22",
           description:
-            "Problems 16, 19(b), 20(a), and 21: a² ≤ b² if and only if a ≤ b for nonnegative a and b, the triangle inequality, the reverse triangle inequality, and the ε-neighborhood form of |x − a| < ε.",
+            "Problems 16, 19, 20, and 21: comparing squares of nonnegative numbers, |ab| = |a||b|, the triangle inequality and its consequences, and |x − a| < ε if and only if a − ε < x < a + ε.",
           reflection: ""
         }
       ],
       notes: [
-        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-03-antisymmetry.jpg", caption: "If a ≤ b and b ≤ a, then a = b, split into cases", date: "Sep 3" },
-        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-15-adding-inequalities.jpg", caption: "If a ≤ b and c ≤ d, then a + c ≤ b + d", date: "Sep 15" },
+        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-03-antisymmetry.jpg", caption: "Definition 1.5: a ≤ a, and if a ≤ b and b ≤ a then a = b", date: "Sep 3" },
+        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-15-adding-inequalities.jpg", caption: "If a < b and c ≤ d, then a + c < b + d", date: "Sep 15" },
         { type: "photo", src: "assets/unit-1/whiteboards/2026-09-15-multiply-by-negative.jpg", caption: "If a < b and c < 0, then ac > bc", date: "Sep 15" },
         { type: "photo", src: "assets/unit-1/whiteboards/2026-09-15-squares-nonnegative.jpg", caption: "a² ≥ 0 for every real a, and a < a + 1", date: "Sep 15" },
         { type: "photo", src: "assets/unit-1/whiteboards/2026-09-17-abs-nonnegative.jpg", caption: "Problem 17(a): |a| ≥ 0 using Definition 1.7", date: "Sep 17" },
-        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-17-abs-negation.jpg", caption: "Problem 17(d): |−a| = |a| by cases", date: "Sep 17" }
+        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-17-abs-negation.jpg", caption: "|−a| = |a| by cases", date: "Sep 17" },
+        { type: "pdf", src: "assets/unit-1/scratch-problems-11-13.pdf", caption: "Scratch notes: Problems 11–13 and plan for 19–21" },
+        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-22-problem-19.jpg", caption: "Problem 19: |ab| = |a||b| and |a + b| ≤ |a| + |b| by four sign cases", date: "Sep 22" },
+        { type: "photo", src: "assets/unit-1/whiteboards/2026-09-24-problem-21a.jpg", caption: "Problem 21(a): |x| < p if and only if −p < x < p, by cases on the sign of x", date: "Sep 24" }
       ]
     }
   ]
