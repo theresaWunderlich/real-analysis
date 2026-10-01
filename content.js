@@ -24,7 +24,7 @@ window.SITE = {
       tint: "lilac",
       cover: "assets/unit-1/whiteboards/2026-09-17-abs-nonnegative.jpg",
       summary: "Building order on R from the positive numbers, then using it to prove the basic facts about inequalities and absolute value.",
-      topics: ["Axiom 1.4 (Order)", "Definition 1.5", "Absolute value", "Triangle inequality"],
+      topics: ["Order relations","Axiom 1.4 (Order)", "Definition 1.5", "Absolute value", "Equivalence"],
       pdfs: [
         {
           title: "Order axioms and the real number system",
@@ -49,7 +49,7 @@ window.SITE = {
           file: "assets/unit-1/equivalence-absolute-value.pdf",
           date: "Sep 22",
           description:
-            "Problems 16, 19, 20, and 21: comparing squares of nonnegative numbers, |ab| = |a||b|, the triangle inequality and its consequences, and |x − a| < ε if and only if a − ε < x < a + ε.",
+            "Problems 16, 19, 20, and 21: comparing squares of nonnegative numbers, |ab| = |a||b|, and |x − a| < ε if and only if a − ε < x < a + ε.",
           reflection: ""
         }
       ],
@@ -63,6 +63,28 @@ window.SITE = {
         { type: "pdf", src: "assets/unit-1/scratch-problems-11-13.pdf", caption: "Scratch notes: Problems 11–13 and plan for 19–21" },
         { type: "photo", src: "assets/unit-1/whiteboards/2026-09-22-problem-19.jpg", caption: "Problem 19: |ab| = |a||b| and |a + b| ≤ |a| + |b| by four sign cases", date: "Sep 22" },
         { type: "photo", src: "assets/unit-1/whiteboards/2026-09-24-problem-21a.jpg", caption: "Problem 21(a): |x| < p if and only if −p < x < p, by cases on the sign of x", date: "Sep 24" }
+      ]
+    },
+    {
+      id: "supremum-infimum",
+      title: "1.4 Supremum, infimum, and completeness",
+      tint: "sage",
+      cover: "assets/unit-2/whiteboards/2026-09-29-problem-23abc.jpg",
+      summary: "Upper and lower bounds, the least upper bound, and the Completeness Axiom that separates R from Q.",
+      topics: ["Definitions 1.8–1.10", "Supremum and infimum", "Completeness Axiom"],
+      pdfs: [
+        {
+          title: "Supremum and infimum",
+          file: "assets/unit-2/supremum-infimum.pdf",
+          date: "Oct 1",
+          description:
+            "Problem 23: the min, max, infimum, and supremum of six subsets of R, including a set of rationals whose supremum is not rational.",
+          reflection: ""
+        }
+      ],
+      notes: [
+        { type: "photo", src: "assets/unit-2/whiteboards/2026-09-29-problem-23abc.jpg", caption: "Problem 23(a)–(c): sketching each set on the number line", date: "Sep 29" },
+        { type: "photo", src: "assets/unit-2/whiteboards/2026-09-29-problem-23d.jpg", caption: "Problem 23(d): comparing n/(n + m) to 1/2 by cases n = m, n < m, n > m", date: "Sep 29" }
       ]
     }
   ]
