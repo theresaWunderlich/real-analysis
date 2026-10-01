@@ -83,8 +83,7 @@ window.SITE = {
         }
       ],
       notes: [
-        { type: "photo", src: "assets/unit-2/whiteboards/2026-09-29-problem-23abc.jpg", caption: "Problem 23(a)–(c): sketching each set on the number line", date: "Sep 29" },
-        { type: "photo", src: "assets/unit-2/whiteboards/2026-09-29-problem-23d.jpg", caption: "Problem 23(d): comparing n/(n + m) to 1/2 by cases n = m, n < m, n > m", date: "Sep 29" }
+        { type: "photo", src: "assets/unit-2/whiteboards/2026-09-29-problem-23abcd.jpg", caption: "Problem 23(a)–(d): sketching each set on the number line", date: "Sep 29" }
       ]
     }
   ]
